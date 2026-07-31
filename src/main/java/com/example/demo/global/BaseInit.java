@@ -7,8 +7,6 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Optional;
-
 @Configuration
 public class BaseInit {
 
@@ -19,21 +17,26 @@ public class BaseInit {
     public ApplicationRunner init(){
         return args -> {
             System.out.println("초기화 작업을 수행합니다");
-            if(postRepository.count()>0){
-                return;
-            };
-
-            //post 하나 저장
-            Post post = new Post("제목1","내용1");
-            postRepository.save(post);
-
-            //post 조회
-            Optional<Post> opPost= postRepository.findById(1);
-
-            if(opPost.isPresent()){
-                System.out.println(opPost.get().getTitle());
-                System.out.println(opPost.get().getBody());
-            }
+            work1();
+            work2();
         };
+    }
+
+    void work1() {
+
+        if(postRepository.count() > 0) {
+            return;
+        }
+
+        Post post1 = new Post("제목1", "내용1");
+        postRepository.save(post1);
+
+        Post post2 = new Post("제목2", "내용2");
+        postRepository.save(post2);
+    }
+
+    void work2() {
+        postRepository.findById(1);
+        // select * from post where id = 1;
     }
 }
