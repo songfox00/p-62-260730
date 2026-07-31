@@ -27,9 +27,11 @@ public class BaseInit {
             work1();
             work2();
 
-            new Thread(()->{
-                self.work3();
-            }).start();
+//            new Thread(()->{
+//                self.work3();
+//            }).start();
+
+            work4();
         };
     }
 
@@ -62,5 +64,11 @@ public class BaseInit {
         }
 
         postService.delete(post2);
+    }
+
+    @Transactional
+    void work4(){
+        Post post1 = postService.findById(1).get();
+        postService.modify(post1, "제목1-수정", "내용1-수정");
     }
 }
