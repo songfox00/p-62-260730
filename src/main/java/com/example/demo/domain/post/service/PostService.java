@@ -3,19 +3,20 @@ package com.example.demo.domain.post.service;
 import com.example.demo.domain.post.entity.Post;
 import com.example.demo.domain.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class PostService {
 
     private final PostRepository postRepository;
 
     public Post write(String title, String body){
-        Post post1=new Post(title, body);
-        return postRepository.save(post1);
+        Post post=new Post(title, body);
+
+        return postRepository.save(post);  //트랜잭션 시작 -> insert ... -> 트랜잭션 종료 -> 커밋
     }
 
     public Optional<Post> findById(int id){
