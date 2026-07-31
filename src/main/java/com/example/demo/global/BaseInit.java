@@ -44,7 +44,7 @@ public class BaseInit {
         postService.write("제목2", "내용2");
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     void work2() {
         postService.findById(1);
         // select * from post where id = 1;
