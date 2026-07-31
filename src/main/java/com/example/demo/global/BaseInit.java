@@ -1,10 +1,13 @@
 package com.example.demo.global;
 
+import com.example.demo.domain.post.entity.Post;
 import com.example.demo.domain.post.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.transaction.annotation.Transactional;
 
 @Configuration
@@ -12,6 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class BaseInit {
 
     private final PostService postService;
+    @Lazy
+    @Autowired
+    private BaseInit self;
 
     @Bean
     public ApplicationRunner init(){
@@ -20,6 +26,10 @@ public class BaseInit {
 
             work1();
             work2();
+
+            new Thread(()->{
+                self.work3();
+            }).start();
         };
     }
 
@@ -38,5 +48,19 @@ public class BaseInit {
     void work2() {
         postService.findById(1);
         // select * from post where id = 1;
+    }
+
+    @Transactional
+    void work3(){
+        Post post1 = postService.findById(1).get();
+        Post post2 = postService.findById(2).get();
+
+        postService.delete(post1);
+
+        if(true){
+            throw new RuntimeException("테스트 예외");
+        }
+
+        postService.delete(post2);
     }
 }
