@@ -1,4 +1,4 @@
-package com.example.demo.domain.wiseSaying.entity;
+package com.example.demo.domain.post.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
