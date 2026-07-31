@@ -24,9 +24,7 @@ public class BaseInit {
             };
 
             //post 하나 저장
-            Post post = new Post();
-            post.setTitle("제목1");
-            post.setBody("내용1");
+            Post post = new Post("제목1","내용1");
             postRepository.save(post);
 
             //post 조회

@@ -9,11 +9,16 @@ import lombok.*;
 @Setter
 @Getter // 어노테이션. 표식(자바, 프레임워크, IDE)
 @Entity
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment
     private int id;
-    private String title;
-    private String body;
+    private final String title;
+    private final String body;
+
+    public Post(){
+        title="";
+        body="";
+    }
 }
