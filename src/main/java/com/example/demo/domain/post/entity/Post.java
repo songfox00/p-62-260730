@@ -14,6 +14,6 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment
     private int id;
-    private String content;
-    private String author;
+    private String title;
+    private String body;
 }

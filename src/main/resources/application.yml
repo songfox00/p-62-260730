@@ -1,6 +1,11 @@
 spring:
   application:
     name: demo
+
+  output:
+    ansi:
+      enabled: always
+
   datasource:
     url: jdbc:h2:./db_dev;MODE=MySQL
     username: sa
@@ -15,6 +20,11 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+logging:
+  level:
+    org.hibernate.orm.jdbc.bind: TRACE
+    org.hibernate.orm.jdbc.extract: TRACE
 
 server:
   port: 8080
