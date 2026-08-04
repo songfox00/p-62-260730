@@ -69,6 +69,6 @@ public class BaseInit {
     @Transactional
     void work4(){
         Post post1 = postService.findById(1).get();
-        postService.modify(post1, "제목1-수정", "내용1-수정");
+        postService.modify(post1, "제목1-수정4", "내용1-수정4");
     }
 }
