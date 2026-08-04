@@ -31,7 +31,7 @@ public class BaseInit {
 //                self.work3();
 //            }).start();
 
-            work4();
+            self.work4();
         };
     }
 
